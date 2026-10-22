@@ -750,8 +750,8 @@ daruma.group.traverse(function (o) {
   if (o.material) ["map", "bumpMap"].forEach(function (k) { if (o.material[k]) { o.material[k].encoding = THREE.LinearEncoding; o.material[k].needsUpdate = true; } });
 });
 var vmHolder = new THREE.Group(); vmHolder.add(daruma.group); vmScene.add(vmHolder);
-daruma.group.rotation.y = Math.PI + 0.42;       // seen from behind: it faces where you aim
-var VM_BASE = new THREE.Vector3(0.36, -0.33, -0.95), vmKick = 0, vmScale = 0.24;
+daruma.group.rotation.y = Math.PI;       // seen from behind: it faces where you aim
+var VM_BASE = new THREE.Vector3(0, -0.36, -0.95), vmKick = 0, vmScale = 0.24;
 vmHolder.scale.setScalar(vmScale);
 
 /* =====================================================================
@@ -773,7 +773,7 @@ function fire() {
   lastShot = tAll;
   camera.updateMatrixWorld(true);
   var dir = camera.getWorldDirection(new THREE.Vector3());
-  var muzzle = camera.localToWorld(new THREE.Vector3(VM_BASE.x - 0.02, VM_BASE.y + 0.08, VM_BASE.z - 0.18));
+  var muzzle = camera.localToWorld(new THREE.Vector3(VM_BASE.x, VM_BASE.y + 0.1, VM_BASE.z - 0.2));
   var aim = camera.localToWorld(new THREE.Vector3(0, 0, -40));
   var d = aim.sub(muzzle).normalize();
   var b = new THREE.Group(); b.add(new THREE.Mesh(ballGeo, ballMat));
